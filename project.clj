@@ -12,4 +12,5 @@
                  [org.xerial/sqlite-jdbc "3.8.11.2"]
                  [com.layerware/hugsql "0.4.7"]
                  [mount "0.1.10"]
+                 [buddy "1.0.0"]
                 ])
