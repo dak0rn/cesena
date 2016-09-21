@@ -3,8 +3,13 @@ All notable changes to this project will be documented in this file. This change
 
 ## [Unreleased]
 ### Changed
-- Added `buddy` dependency
-- Added `taobaibai.services.security` with the functions `encrypt` and `verify`
+- Adds dependencies
+    - buddy
+    - ring
+    - compojure
+    - ring-defaults
+    - hiccup
+- Adds `taobaibai.services.security` with the functions `encrypt` and `verify`
 
 ### Removed
 
