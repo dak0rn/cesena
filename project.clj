@@ -1,8 +1,8 @@
-;; project.clj - taobaibai project configuration
-(defproject taobaibai "0.1.0-SNAPSHOT"
+;; project.clj - cesena project configuration
+(defproject cesena "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
-  :url "https://github.com/dak0rn/taobaibai"
-  :main taobaibai.core
+  :url "https://github.com/dak0rn/cesena"
+  :main cesena.core
   :license {:name "MIT License"
             :url "https://opensource.org/licenses/MIT"
             :key "mit"

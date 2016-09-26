@@ -1,5 +1,5 @@
 ;; config.clj - Configuration file loader and parser
-(ns taobaibai.config
+(ns cesena.config
   (:require
     [ clojure.edn :as edn ]
     [ clojure.java.io :refer [ resource file ] ]
@@ -9,15 +9,15 @@
 ;; Different configuration file locations
 (def config-files
   (map file [
-             "/opt/taobaibai.edn"
-             "/etc/taobaibai.edn"
+             "/opt/cesena.edn"
+             "/etc/cesena.edn"
              ]))
 
 (defn- get-config-contents
   [ files ]
   (if-let [ config-file (first (filter #(.exists %) files)) ]
     (slurp config-file)
-    (-> "taobaibai.edn"
+    (-> "cesena.edn"
         resource
         slurp)))
 

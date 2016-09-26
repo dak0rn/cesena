@@ -1,9 +1,9 @@
-;; core.clj - taobaibai core module
-(ns taobaibai.core
+;; core.clj - cesena core module
+(ns cesena.core
   (:require
              [ mount.core :refer [ start ] ]
-             [ taobaibai.config ]
-             [ taobaibai.database ]
+             [ cesena.config ]
+             [ cesena.database ]
             ))
 
 (defn boot-application
@@ -11,8 +11,8 @@
   [ ]
   (do
     (start
-      #'taobaibai.config/config
-      #'taobaibai.database/db)))
+      #'cesena.config/config
+      #'cesena.database/db)))
 
 (defn -main
   "The main start function of the application"

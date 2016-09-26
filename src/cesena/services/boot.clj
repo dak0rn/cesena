@@ -1,7 +1,7 @@
 ;; boot.clj - boot service
 ;; Creates the database and prepares the environment
-(ns taobaibai.services.boot
-  (:require [ taobaibai.database :refer [ make-queries db ] ]))
+(ns cesena.services.boot
+  (:require [ cesena.database :refer [ make-queries db ] ]))
 
 ;; Load queries for this service
 (make-queries "sql/boot.sql")

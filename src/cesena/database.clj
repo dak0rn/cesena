@@ -1,8 +1,8 @@
 ;; database.clj - database connection
-(ns taobaibai.database
+(ns cesena.database
   (:require [ mount.core :refer [ defstate ] ]
             [ hugsql.core :refer [ def-db-fns ] ]
-            [ taobaibai.config :refer [ config ] ]
+            [ cesena.config :refer [ config ] ]
             ))
 
 (defn- create-db-spec

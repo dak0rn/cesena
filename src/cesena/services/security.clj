@@ -1,8 +1,8 @@
 ;; security.clj - security utilities
-(ns taobaibai.services.security
+(ns cesena.services.security
   (:require [ buddy.sign.jwt :as jwt ]
             [ buddy.hashers :as hashers ]
-            [ taobaibai.config :refer [ config ] ]))
+            [ cesena.config :refer [ config ] ]))
 
 (defn
   ^{

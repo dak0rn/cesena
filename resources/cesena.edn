@@ -1,0 +1,8 @@
+;; Taobaibai configuration file
+{
+    :db "/Users/dak0rn/Desktop/taobaibai.db"
+
+    :security {
+        :hashing-algorithm :pbkdf2+sha256
+    }
+}
