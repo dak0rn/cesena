@@ -12,7 +12,7 @@
   }
   index-handler
   []
-  ("index!"))
+  "index!")
 
 ;;; Export route definitions
 (def routes [
