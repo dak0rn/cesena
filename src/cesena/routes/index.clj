@@ -16,5 +16,5 @@
 
 ;;; Export route definitions
 (def routes [
- (GET "/" [] (index-handler))
+ (GET "/" [ ] (index-handler))
 ])

@@ -1,0 +1,143 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/**
+ * Cesena Stylesheet
+ */
+
+body {
+    background: #f5f1e8;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+    border-top: #fff 6px solid;
+    padding: 20px 0 0 0;
+    margin: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    border: #d7d3c8 2px solid;
+    background: #fcf9f5;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 6px 8px;
+    color: #333;
+    font-family: monospace;
+}
+
+button {
+    color: #fff;
+    border: #c13832 2px solid;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    background: #c13832;
+    transition: background ease-out 0.2s;
+}
+
+button:hover,
+button:active,
+button:focus {
+    background: #cd453f;
+}
+
+/* Login */
+.login-window {
+    border-radius: 6px;
+    background: #fff;
+    width: 300px;
+    background: #44;
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 150px);
+}
+
+.login-body {
+    padding: 10px;
+}
+
+.login-body .form-row {
+    margin-bottom: 10px;
+}
+
+.login-body .form-row label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-body .form-row input {
+    display: block;
+    width: 100%;
+}
+
+.login-body button {
+    float: right;
+}
+
+/* Helpers */
+.clearfix {
+    display: block;
+    float: none;
+    clear: both;
+}
+
+/* Messages */
+.message {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.message.danger {
+    color: #cd453f;
+    border: #cd453f 2px solid;
+    border-radius: 4px;
+    background: #f5f1e8;
+}

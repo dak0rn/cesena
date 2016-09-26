@@ -5,12 +5,14 @@
             [ cesena.middlewares.session :refer [ wrap-session ] ]
             ;; Routes
             [ cesena.routes.index ]
+            [ cesena.routes.login ]
             ))
 
 ;; The router handler composed of all the routes
 (def route-handler
   (apply routes
-    (concat cesena.routes.index/routes)))
+    (concat cesena.routes.index/routes
+            cesena.routes.login/routes)))
 
 ;; Modified ring defaults
 (def middleware-defaults
