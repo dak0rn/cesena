@@ -10,7 +10,6 @@
   }
   [ handler ]
   (fn [ request ]
-    (println "URI is" (:uri request))
     (if (= "/login" (:uri request))
       ;; The login is skipped from the session handling
       (handler request)
