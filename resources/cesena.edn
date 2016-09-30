@@ -1,6 +1,6 @@
 ;; Cesena configuration file
 {
-    :db "/Users/dak0rn/Desktop/taobaibai.db"
+    :db "/Users/dak0rn/Desktop/cesena.db"
 
     :security {
         :hashing-algorithm :pbkdf2+sha256
