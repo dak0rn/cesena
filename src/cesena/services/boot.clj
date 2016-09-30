@@ -23,4 +23,4 @@
   { :added "0.1.0" }
   [ ]
   (let [ sql (-> "sql/setup.sql" resource slurp (split #"--;;")) ]
-    (doseq [ statement sql ] (db-do-commands statement))))
+    (doseq [ statement sql ] (db-do-commands db statement))))
