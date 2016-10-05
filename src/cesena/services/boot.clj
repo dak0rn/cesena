@@ -4,6 +4,7 @@
   (:require [ cesena.database :refer [ make-queries db ] ]
             [ clojure.java.io :refer [ resource ] ]
             [ clojure.string :refer [ split ] ]
+            [ cesena.services.user :refer [ create-user ] ]
             [ clojure.java.jdbc :refer [ db-do-commands ] ]))
 
 ;; Load queries for this service
@@ -23,4 +24,5 @@
   { :added "0.1.0" }
   [ ]
   (let [ sql (-> "sql/setup.sql" resource slurp (split #"--;;")) ]
-    (doseq [ statement sql ] (db-do-commands db statement))))
+    (doseq [ statement sql ] (db-do-commands db statement)))
+  (create-user "root" "toor"))
