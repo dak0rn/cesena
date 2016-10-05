@@ -11,3 +11,5 @@ CREATE TABLE IF NOT EXISTS cesena_book (
     checksum BLOB,
     date INTEGER
 );
+--;;
+CREATE TABLE cesena (version TEXT);
