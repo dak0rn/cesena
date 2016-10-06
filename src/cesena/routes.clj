@@ -6,12 +6,14 @@
             ;; Routes
             [ cesena.routes.index ]
             [ cesena.routes.login ]
+            [ cesena.routes.logout ]
             ))
 
 ;; The router handler composed of all the routes
 (def route-handler
   (apply routes
     (concat cesena.routes.index/routes
+            cesena.routes.logout/routes
             cesena.routes.login/routes)))
 
 ;; Modified ring defaults

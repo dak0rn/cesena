@@ -10,7 +10,7 @@
 (defn-
   ^{
     :doc "Handler for /login"
-    :added "1.0.0"
+    :added "0.1.0"
   }
   login-handler
   [ ]
@@ -19,7 +19,7 @@
 (defn-
   ^{
     :doc "POST handler that tries to perform a login"
-    :added "1.0.0"
+    :added "0.1.0"
   }
   do-login-handler
   [ request ]

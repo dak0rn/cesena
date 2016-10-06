@@ -11,7 +11,7 @@
   }
   [ handler ]
   (fn [ request ]
-    (if (= "/login" (:uri request))
+    (if (or (= "/login" (:uri request)) (= "/logout" (:uri request)))
       ;; The login is skipped from the session handling
       (handler request)
       ;; Try to get the JWT from the request otherwise

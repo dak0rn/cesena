@@ -85,3 +85,17 @@ button {
     margin-bottom: 15px;
     color: #f60;
 }
+
+/* Navigation layout */
+#navigation ul {
+    list-style-type: none;
+    display: flex;
+}
+
+#navigation .item {
+    flex-grow: 0;
+}
+
+#navigation .separator {
+    flex-grow: 1;
+}
