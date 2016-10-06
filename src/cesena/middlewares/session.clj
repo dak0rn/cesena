@@ -15,9 +15,7 @@
       (handler request)
       ;; Try to get the JWT from the request otherwise
       (if-let [ jwt (get-in request [ :cookies (get-in config [ :security :jwt :field ]) :value ])]
-        (do
-            (println "Found a JWT" jwt)
-            (handler request))
+        (handler request))
         ;; If no JWT is present, redirect to the login
         (redirect "/login")
-        ))))
+        )))
