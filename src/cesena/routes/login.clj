@@ -2,7 +2,7 @@
 (ns cesena.routes.login
   (:require [ compojure.core :refer [ GET POST ] ]
             [ cesena.services.user :refer [ find-user ] ]
-            [ cesena.services.security :refer [ create-jwt ] ]
+            [ cesena.services.security :refer [ create-jwt add-jwt-cookie ] ]
             [ cesena.config :refer [ config ] ]
             [ cesena.views.login :refer [ render-login ] ]))
 
@@ -37,15 +37,8 @@
              jwt-field (get-in config [ :security :jwt :field ])
              jwt (create-jwt { :jti uid }) ]
         ;; Response map
-        {
-          ;; Redirect to the root
-          :status 302 :headers { "Location" "/" }
-
-          ;; Set the cookie
-          :cookies (assoc {} jwt-field jwt)
-
-          :body ""
-       }))))
+        (add-jwt-cookie { :status 302 :headers { "Location" "/" } :cookies {} :body "" } jwt)
+       ))))
 
 
 

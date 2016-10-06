@@ -41,3 +41,34 @@
           exp (time/plus (time/now) (time/seconds (:ttl jwt-config)))
           all-claims (merge {:exp exp} claims (:claims jwt-config)) ]
      (jwt/sign all-claims (:key jwt-config)))))
+
+(defn
+  ^{
+     :doc "Validates the claim and returns the claims if valid"
+     :added "0.1.0"
+  }
+  get-claims
+  [ token ]
+  (let [ jwt-config (get-in config [ :security :jwt ])
+         enckey (:key jwt-config) ]
+    (jwt/unsign token enckey )))
+
+(defn
+  ^{
+     :doc "Adds the JWT cookie to the given ring response map"
+     :added "0.1.0"
+  }
+  add-jwt-cookie
+  [ response token ]
+  (let [ field-name (get-in config [ :security :jwt :field ]) ]
+    (assoc-in response [ :cookies field-name ] { :value token :http-only true } )))
+
+(defn
+  ^{
+     :doc "Removes the JWT cookie from the response map"
+     :added "0.1.0"
+  }
+  remove-jwt-cookie
+  [ response ]
+  (let [ field-name (get-in config [ :security :jwt :field ]) ]
+    (assoc-in response [ :cookies field-name ] { :value "" :http-only true :max-age -1 })))

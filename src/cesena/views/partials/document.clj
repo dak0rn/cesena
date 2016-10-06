@@ -9,7 +9,7 @@
   }
   document
   [ title & children ]
-  (html 
+  (html
     [ :html
       [ :head
         [ :title (h title) ]

@@ -1,7 +1,7 @@
 ;; index.clj - Index route
 (ns cesena.routes.index
   (:require [ compojure.core :refer [ GET ] ]
-            ;; TODO views
+            [ cesena.views.index :refer [ render-index ] ]
             ))
 
 ;;; Route handler functions
@@ -12,7 +12,7 @@
   }
   index-handler
   []
-  "index!")
+  (render-index))
 
 ;;; Export route definitions
 (def routes [
