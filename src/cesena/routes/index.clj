@@ -11,10 +11,10 @@
     :added "1.0.0"
   }
   index-handler
-  []
-  (render-index))
+  [ request ]
+  (render-index (:cesena-session request)))
 
 ;;; Export route definitions
 (def routes [
- (GET "/" [ ] (index-handler))
+  (GET "/" request (index-handler request))
 ])

@@ -10,6 +10,7 @@
      :added "0.1.0"
   }
   render-index
-  [ ]
+  [ session ]
   (document "Cesena"
-    (navigation)))
+    (navigation)
+    [ :pre (str session) ]))

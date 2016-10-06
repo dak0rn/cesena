@@ -25,4 +25,4 @@
   [ ]
   (let [ sql (-> "sql/setup.sql" resource slurp (split #"--;;")) ]
     (doseq [ statement sql ] (db-do-commands db statement)))
-  (create-user "root" "toor"))
+  (create-user "root" "toor" { :admin true }))

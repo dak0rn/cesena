@@ -2,6 +2,7 @@
 (ns cesena.middlewares.session
   (:require [ cesena.config :refer [ config ] ]
             [ cesena.services.security :refer [ create-jwt get-claims add-jwt-cookie remove-jwt-cookie ] ]
+            [ cesena.services.user :refer [ find-user-by-id ] ]
             [ ring.util.response :refer [ redirect ] ]))
 
 (defn wrap-session
@@ -20,10 +21,12 @@
           ;; The JWT unsigning throws if the JWT is invalid
           (let [ claim (get-claims jwt)
                  ;; If the claim unsigning did not throw, the handler can process the request
-                 response (handler request) ]
-            ;; Now update the JWT
-            (add-jwt-cookie response (create-jwt claim)))
+                 uid (:jti claim) ]
+            (if-let [ user (find-user-by-id uid) ]
+              (add-jwt-cookie (handler (assoc request :cesena-session user)) (create-jwt claim))
+              (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" "/login" } })))
           (catch Exception ignore
+            (println "Exception" ignore)
             (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" "/login" } })))
         ;; If no JWT is present, redirect to the login
         (redirect "/login")

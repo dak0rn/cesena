@@ -18,10 +18,11 @@
      :added "0.1.0"
   }
   create-user
-  [ username password ]
+  [ username password options ]
   (let [ uuid (gen-uuid)
-         passwd (encrypt password)
-         data { :username username :passwd passwd :userid uuid } ]
+         ;; Use nil as password if the user is locked
+         passwd (if (:locked options false) nil (encrypt password))
+         data { :username username :passwd passwd :userid uuid :admin (get options :admin false) } ]
     (query-create-user db data)))
 
 ;; Find a user for the given username and password
@@ -37,3 +38,13 @@
     (let [ pw (:passwd user) ]
       (when (verify password pw) user))))
 
+
+;; Find a user for a given user Id
+(defn
+  ^{
+     :doc "Selects the user with the given user id"
+     :added "0.1.0"
+  }
+  find-user-by-id
+  [ uid ]
+  (query-user-by-id db { :uid uid }))
