@@ -34,7 +34,7 @@
 
       ;; Otherwise the cookie is created
       (let [ uid (:user_id user)
-             jwt-field (get-in [ :security :jwt :field ] config)
+             jwt-field (get-in config [ :security :jwt :field ])
              jwt (create-jwt { :jti uid }) ]
         ;; Response map
         {

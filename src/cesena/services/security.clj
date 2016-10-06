@@ -37,7 +37,7 @@
 
   ;; w/ additional claims
   ([ claims ]
-   (let [ jwt-config (get-in [:security :jwt] config)
+   (let [ jwt-config (get-in config [:security :jwt])
           exp (time/plus (time/now) (time/seconds (:ttl jwt-config)))
-         all-claims (merge {:exp exp} claims (:claims jwt-config)) ]
+          all-claims (merge {:exp exp} claims (:claims jwt-config)) ]
      (jwt/sign all-claims (:key jwt-config)))))
