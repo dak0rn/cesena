@@ -1,3 +1,3 @@
--- :name check-system-table
--- :doc "Checks if the taobaibai system table exists"
-select count(name) as "exists" from sqlite_master where name = 'cesana';
+-- :name check-system-table :? :1
+-- :doc "Checks if the cesena system table exists"
+select count(name) as "exists" from sqlite_master where name = 'cesena';

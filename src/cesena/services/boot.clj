@@ -15,7 +15,7 @@
   { :added "0.1.0" }
   [ ]
   (let [ res (check-system-table db) ]
-    (= 1 (:count res))))
+    (= 1 (:exists res))))
 
 
 (defn setup-database
