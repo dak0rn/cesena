@@ -14,7 +14,7 @@
       ;; The login is skipped from the session handling
       (handler request)
       ;; Try to get the JWT from the request otherwise
-      (if-let [ jwt (get (get-in [ :security :jwt :field ] config) (:cookies request)) ]
+      (if-let [ jwt (get-in request [ :cookies (get-in config [ :security :jwt :field ]) :value ])]
         (do
             (println "Found a JWT" jwt)
             (handler request))
