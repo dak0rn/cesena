@@ -94,6 +94,7 @@ button {
 
 #navigation .item {
     flex-grow: 0;
+    padding-right: 10px;
 }
 
 #navigation .separator {
