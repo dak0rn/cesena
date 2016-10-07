@@ -25,7 +25,7 @@
             (if-let [ user (find-user-by-id uid) ]
               (add-jwt-cookie (handler (assoc request :cesena-session user)) (create-jwt claim))
               (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" "/login" } })))
-          (catch Exception ignore
+          (catch clojure.lang.ExceptionInfo ignore
             (println "Exception" ignore)
             (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" "/login" } })))
         ;; If no JWT is present, redirect to the login
