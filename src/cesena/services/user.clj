@@ -48,3 +48,13 @@
   find-user-by-id
   [ uid ]
   (query-user-by-id db { :uid uid }))
+
+;; Finds all users
+(defn
+  ^{
+     :doc "Selects all users"
+     :added "0.1.0"
+  }
+  find-all-users
+  [ ]
+  (query-all-users db))

@@ -22,6 +22,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -52,12 +53,19 @@ table {
  * Cesena Stylesheet
  */
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 14px;
     color: #333;
     margin: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 input {
@@ -74,11 +82,16 @@ label {
 }
 
 button {
+    cursor: pointer;
     border: #ccc 1px solid;
     color: #444;
     font-size: 12px;
     background: #fff;
     border-radius: 4px;
+}
+
+button:hover {
+    background: #eee;
 }
 
 .message {
@@ -87,6 +100,10 @@ button {
 }
 
 /* Navigation layout */
+#navigation {
+    flex-grow: 0;
+}
+
 #navigation ul {
     list-style-type: none;
     display: flex;
@@ -99,4 +116,50 @@ button {
 
 #navigation .separator {
     flex-grow: 1;
+}
+
+h1 {
+    font-size: 1.6em;
+    margin: 0.5em 0;
+}
+
+h2 {
+    font-size: 1.4em;
+    margin: 0.3em 0;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.admin-grid {
+    display: flex;
+    width: 100%;
+}
+
+.admin-left {
+    flex-grow: 1;
+    padding: 0 10px;
+}
+
+.admin-right {
+    width: 400px;
+    flex-grow: 0;
+    padding: 0 10px;
+}
+
+.user-row {
+    display: flex;
+}
+
+.user-name {
+    flex-grow: 1;
+}
+
+.user-locked, .user-admin, .user-button {
+    flex-grow: 0;
+}
+
+.user-button form {
+    display: inline-block;
 }

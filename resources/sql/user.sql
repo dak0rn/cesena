@@ -9,3 +9,7 @@ SELECT * FROM cesena_user WHERE name = :name limit 1;
 -- :name query-user-by-id :? :1
 -- :doc "Finds the user with the given id"
 SELECT * FROM cesena_user WHERE user_id = :uid AND passwd IS NOT NULL LIMIT 1;
+
+-- :name query-all-users :? :*
+-- :doc "Finds all users"
+SELECT * FROM cesena_user;

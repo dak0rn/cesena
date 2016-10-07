@@ -7,6 +7,7 @@
             [ cesena.routes.index ]
             [ cesena.routes.login ]
             [ cesena.routes.logout ]
+            [ cesena.routes.admin ]
             ))
 
 ;; The router handler composed of all the routes
@@ -14,6 +15,7 @@
   (apply routes
     (concat cesena.routes.index/routes
             cesena.routes.logout/routes
+            cesena.routes.admin/routes
             cesena.routes.login/routes)))
 
 ;; Modified ring defaults
