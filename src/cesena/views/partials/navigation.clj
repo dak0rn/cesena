@@ -6,6 +6,7 @@
 (def navigation-items [
   { :url "/" :title "Index" }
   "-"
+  "admin"
   { :url "/logout" :title "Logout" }
 ])
 
@@ -16,10 +17,10 @@
   }
   navigation
   ;; No active page
-  ([ ] (navigation nil))
+  ([ user ] (navigation nil user))
 
   ;; With active page
-  ([ current ]
+  ([ current user ]
     (html
       [ :div#navigation
         [ :ul
@@ -27,5 +28,7 @@
             ;; Render a navigation separator?
             (if (= "-" link)
               [ :li.separator ]
-              [ :li.item [ :a { :href (:url link) } (:title link) ] ]))
-         ] ] )))
+              (if (and (= "admin" link) (= 1 (:admin user)))
+                [ :li.item [ :a { :href "/admin" } "Configuration" ] ]
+                [ :li.item [ :a { :href (:url link) } (:title link) ] ])))
+         ]])))

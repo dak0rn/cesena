@@ -12,5 +12,5 @@
   render-index
   [ session ]
   (document "Cesena"
-    (navigation)
-    [ :pre (str session) ]))
+    (navigation session)
+    ))
