@@ -58,3 +58,23 @@
   find-all-users
   [ ]
   (query-all-users db))
+
+;; Lock a specific user
+(defn
+  ^{
+     :doc "Locks the given user"
+     :added "0.1.0"
+  }
+  lock-user
+  [ user ]
+  (query-lock-user db { :uid (:user_id user) }))
+
+;; Change the password of a user
+(defn
+  ^{
+     :doc "Changes the password of the given user"
+     :added "0.1.0"
+  }
+  change-password
+  [ user password ]
+  (query-change-password db { :uid (:user_id user) :passwd (encrypt password) } ))

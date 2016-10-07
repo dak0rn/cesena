@@ -13,3 +13,11 @@ SELECT * FROM cesena_user WHERE user_id = :uid AND passwd IS NOT NULL LIMIT 1;
 -- :name query-all-users :? :*
 -- :doc "Finds all users"
 SELECT * FROM cesena_user;
+
+-- :name query-lock-user :! :n
+-- :doc "Locks the user with the given id"
+UPDATE cesena_user SET passwd = NULL WHERE user_id = :uid;
+
+-- :name query-change-password :! :n
+-- :doc "Changes the user's password"
+UPDATE cesena_user SET passwd = :passwd WHERE user_id = :uid;

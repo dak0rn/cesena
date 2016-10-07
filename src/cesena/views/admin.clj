@@ -33,7 +33,7 @@
          [ :div.user-button
           (if is-locked (unlock-user-form user) (lock-user-form user) )
           (delete-user-form user)
-          [ :button "Change password" ] ]
+          [ :label "Change Password" ] ]
      ]))])
 
 ;; Form used to create a new user
