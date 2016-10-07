@@ -96,7 +96,25 @@ button:hover {
 
 .message {
     margin-bottom: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+.message.error {
     color: #f60;
+    border-color: #f60;
+}
+
+.message.success {
+    color: #0b0;
+    border-color: #0b0;
+}
+
+.message .dismiss {
+    float: right;
+    text-decoration: none;
+    color: #444;
 }
 
 /* Navigation layout */
@@ -150,6 +168,7 @@ main {
 
 .user-row {
     display: flex;
+    margin-bottom: 10px;
 }
 
 .user-name {
@@ -158,6 +177,10 @@ main {
 
 .user-locked, .user-admin, .user-button {
     flex-grow: 0;
+}
+
+.user-button {
+    padding-left: 15px;
 }
 
 .user-button form {

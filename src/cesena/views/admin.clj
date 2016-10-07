@@ -53,17 +53,40 @@
     [ :div [ :button "Submit" ] ]
 ))
 
+;; Renders a list of error messages
+(defn- render-error
+  [ error-type ]
+  (when (not (empty? error-type))
+    [ :div.message.error
+     (case error-type
+       "values-missing" "Could not create the user because the input was invalid"
+       ;; Default
+       "An unknown error occured")
+     [ :a { :href "/admin" :class "dismiss" } "&times;" ]]))
+
+(defn- render-success
+  [ success-type ]
+  (when (not (empty? success-type))
+    [ :div.message.success
+     (case success-type
+       "created" "The user has been created"
+       ;; Default
+       "Yeah... something")
+     [ :a { :href "/admin" :class "dismiss" } "&times;" ]]))
+
 (defn
   ^{
      :doc "Renders the admin overview page"
      :added "0.1.0"
   }
   render-admin
-  [ session all-users ]
+  [ session all-users message-options ]
   (document "Cesena Admin"
     (navigation session)
     [ :main
       [ :h1 "Cesena Administration" ]
+      (render-error (get message-options "error"))
+      (render-success (get message-options "success"))
       [ :div.admin-grid
         [ :div.admin-left (user-list all-users) ]
         [ :div.admin-right (user-create-form) ]
