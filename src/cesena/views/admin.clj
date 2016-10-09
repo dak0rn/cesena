@@ -19,21 +19,34 @@
 (def unlock-user-form (partial button-form "/admin/unlock" "Unlock"))
 (def delete-user-form (partial button-form "/admin/delete" "Delete"))
 
+;; Form used to change a user's password
+(defn- change-password-form
+  [ user checkbox-id ]
+  (form-to [ :post "/admin/change" ]
+    (anti-forgery-field)
+    [ :input { :type "hidden" :name "uid" :value (:user_id user) } ]
+    [ :input { :type "password" :name "password" } ]
+    [ :label.pw-label-trigger { :for checkbox-id } "Cancel" ]
+    [ :button "Submit" ]))
+
 ;; User list
 (defn- user-list
   [ all-users ]
   [ :div.user-list
    [ :h2 "Users" ]
    (for [ user all-users ]
-     (let [ is-locked (nil? (:passwd user)) ]
+     (let [ is-locked (nil? (:passwd user))
+            checkbox-id (str "showpw" (:user_id user)) ]
        [ :div.user-row
+         [ :input { :type "checkbox" :id checkbox-id } ]
          [ :div.user-name (:name user) ]
          [ :div.user-locked (when is-locked "Locked") ]
          [ :div.user-admin (when (= 1 (:admin user)) "Admin") ]
          [ :div.user-button
           (if is-locked (unlock-user-form user) (lock-user-form user) )
           (delete-user-form user)
-          [ :label "Change Password" ] ]
+          [ :label.pw-label-trigger { :for checkbox-id } "Change Password" ] ]
+         [ :div.user-pw-form (change-password-form user checkbox-id) ]
      ]))])
 
 ;; Form used to create a new user
@@ -53,6 +66,7 @@
     [ :div [ :button "Submit" ] ]
 ))
 
+
 ;; Renders a list of error messages
 (defn- render-error
   [ error-type ]
@@ -70,6 +84,8 @@
     [ :div.message.success
      (case success-type
        "created" "The user has been created"
+       "delete" "The user has been deleted"
+       "change" "The password has been changed"
        ;; Default
        "Yeah... something")
      [ :a { :href "/admin" :class "dismiss" } "&times;" ]]))

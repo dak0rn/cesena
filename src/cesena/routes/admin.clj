@@ -3,7 +3,7 @@
   (:require [ compojure.core :refer [ GET POST ] ]
             [ cesena.views.admin :refer [ render-admin ] ]
             [ ring.util.response :refer [ redirect ] ]
-            [ cesena.services.user :refer [ find-all-users create-user lock-user change-password ] ]
+            [ cesena.services.user :refer [ find-all-users create-user lock-user change-password delete-user ] ]
             [ cesena.middlewares.local :refer [ require-admin ] ]))
 
 ;; Route handler functions
@@ -66,16 +66,29 @@
          (change-password { :user_id who } password)
          (redirect "/admin?success=change")))))
 
+(defn-
+  ^{
+     :doc "Handler for /admin/delete that deletes a user"
+     :added "0.1.0"
+  }
+  handle-delete
+  [ request ]
+  (let [ who (get-in request [ :form-params "uid" ]) ]
+    (delete-user { :user_id who })
+    (redirect "/admin?success=delete")))
+
 ;; Exported routes
 
 (def secured-admin (require-admin handle-admin))
 (def secured-create (require-admin handle-create-user))
 (def secured-lock (require-admin handle-lock))
 (def secured-change (require-admin handle-change))
+(def secured-delete (require-admin handle-delete))
 
 (def routes [
   (GET "/admin" request (secured-admin request))
   (POST "/admin/create" request (secured-create request))
   (POST "/admin/lock" request (secured-lock request))
   (POST "/admin/change" request (secured-change request))
+  (POST "/admin/delete" request (secured-delete request))
 ])

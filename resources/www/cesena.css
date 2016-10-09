@@ -186,3 +186,33 @@ main {
 .user-button form {
     display: inline-block;
 }
+
+.user-button > *,
+.user-pw-form form > * {
+    margin-right: 5px;
+}
+
+.pw-label-trigger {
+    display: inline;
+    cursor: pointer;
+    color: #00f;
+    text-decoration: underline;
+}
+
+.user-row input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .user-button,
+input[type="checkbox"]:checked ~ .user-locked,
+input[type="checkbox"]:checked ~ .user-admin {
+    display: none;
+}
+
+.user-pw-form {
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .user-pw-form {
+    display: block;
+}

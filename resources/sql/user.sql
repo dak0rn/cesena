@@ -21,3 +21,7 @@ UPDATE cesena_user SET passwd = NULL WHERE user_id = :uid;
 -- :name query-change-password :! :n
 -- :doc "Changes the user's password"
 UPDATE cesena_user SET passwd = :passwd WHERE user_id = :uid;
+
+-- :name query-delete-user :! :n
+-- :doc "Deletes the user with the given id"
+DELETE FROM cesena_user WHERE user_id = :uid;

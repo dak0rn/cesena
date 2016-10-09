@@ -78,3 +78,13 @@
   change-password
   [ user password ]
   (query-change-password db { :uid (:user_id user) :passwd (encrypt password) } ))
+
+;; Deletes the user with the given ID if it exists
+(defn
+  ^{
+     :doc "Deletes the given user"
+     :added "0.1.0"
+  }
+  delete-user
+  [ user ]
+  (query-delete-user db { :uid (:user_id user) } ))
