@@ -16,7 +16,6 @@
     [ :button label ]))
 
 (def lock-user-form (partial button-form "/admin/lock" "Lock"))
-(def unlock-user-form (partial button-form "/admin/unlock" "Unlock"))
 (def delete-user-form (partial button-form "/admin/delete" "Delete"))
 
 ;; Form used to change a user's password
@@ -43,7 +42,7 @@
          [ :div.user-locked (when is-locked "Locked") ]
          [ :div.user-admin (when (= 1 (:admin user)) "Admin") ]
          [ :div.user-button
-          (if is-locked (unlock-user-form user) (lock-user-form user) )
+          (if (not is-locked) (lock-user-form user) )
           (delete-user-form user)
           [ :label.pw-label-trigger { :for checkbox-id } "Change Password" ] ]
          [ :div.user-pw-form (change-password-form user checkbox-id) ]
@@ -86,6 +85,7 @@
        "created" "The user has been created"
        "delete" "The user has been deleted"
        "change" "The password has been changed"
+       "locked" "The user has been locked. Change their password to unlock them"
        ;; Default
        "Yeah... something")
      [ :a { :href "/admin" :class "dismiss" } "&times;" ]]))
