@@ -151,8 +151,13 @@ main {
 }
 
 .admin-grid {
-    display: flex;
     width: 100%;
+}
+
+@media (min-width: 769px) {
+    .admin-grid {
+        display: flex;
+    }
 }
 
 .admin-left {
