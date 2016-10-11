@@ -7,10 +7,14 @@ CREATE TABLE IF NOT EXISTS cesena_user (
 --;;
 CREATE TABLE IF NOT EXISTS cesena_book (
     book_id BLOB PRIMARY KEY,
-    name TEXT,
-    filename TEXT,
+    title TEXT,
+    path TEXT,
     checksum BLOB,
     date INTEGER
 );
 --;;
-CREATE TABLE cesena (version TEXT);
+CREATE TABLE cesena (
+    activity_lock INTEGER
+);
+--;;
+INSERT INTO cesena (activity_lock) VALUES (0);
