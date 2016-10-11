@@ -4,6 +4,7 @@
             [ cesena.views.admin :refer [ render-admin ] ]
             [ ring.util.response :refer [ redirect ] ]
             [ cesena.services.user :refer [ find-all-users create-user lock-user change-password delete-user ] ]
+            [ cesena.services.scanner :refer [ rescan-library ] ]
             [ cesena.middlewares.local :refer [ require-admin ] ]))
 
 ;; Route handler functions
@@ -77,6 +78,16 @@
     (delete-user { :user_id who })
     (redirect "/admin?success=delete")))
 
+(defn-
+  ^{
+     :doc "Handler for /admin/rescan"
+     :added "0.1.0"
+  }
+  handle-rescan
+  [ request ]
+  (rescan-library)
+  (redirect "/admin?success=rescan"))
+
 ;; Exported routes
 
 (def secured-admin (require-admin handle-admin))
@@ -84,6 +95,7 @@
 (def secured-lock (require-admin handle-lock))
 (def secured-change (require-admin handle-change))
 (def secured-delete (require-admin handle-delete))
+(def secured-rescan (require-admin handle-rescan))
 
 (def routes [
   (GET "/admin" request (secured-admin request))
@@ -91,4 +103,5 @@
   (POST "/admin/lock" request (secured-lock request))
   (POST "/admin/change" request (secured-change request))
   (POST "/admin/delete" request (secured-delete request))
+  (POST "/admin/rescan" request (secured-rescan request))
 ])

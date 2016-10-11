@@ -90,6 +90,15 @@
        "Yeah... something")
      [ :a { :href "/admin" :class "dismiss" } "&times;" ]]))
 
+;; Renders the form that allows to recreate the database
+(defn- rescan-form
+  [ ]
+  (form-to [ :post "/admin/rescan" ]
+    [ :h2 "Rescan library" ]
+    [ :div "This may take a moment" ]
+    (anti-forgery-field)
+    [ :button "Recreate library index" ]))
+
 (defn
   ^{
      :doc "Renders the admin overview page"
@@ -105,6 +114,6 @@
       (render-success (get message-options "success"))
       [ :div.admin-grid
         [ :div.admin-left (user-list all-users) ]
-        [ :div.admin-right (user-create-form) ]
+        [ :div.admin-right (user-create-form) (rescan-form) ]
       ]
     ]))
