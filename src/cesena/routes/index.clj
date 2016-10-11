@@ -1,6 +1,8 @@
 ;; index.clj - Index route
 (ns cesena.routes.index
   (:require [ compojure.core :refer [ GET ] ]
+            [ cesena.services.library :refer [ all-books find-books ] ]
+            [ clojure.string :refer [ blank? ] ]
             [ cesena.views.index :refer [ render-index ] ]
             ))
 
@@ -12,7 +14,11 @@
   }
   index-handler
   [ request ]
-  (render-index (:cesena-session request)))
+  (let [ term (get-in request [ :query-params "q" ])
+         session (:cesena-session request ) ]
+    (if-not (blank? term)
+      (render-index session (find-books term) term)
+      (render-index session (all-books) ""))))
 
 ;;; Export route definitions
 (def routes [

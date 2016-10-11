@@ -53,10 +53,6 @@ table {
  * Cesena Stylesheet
  */
 
-html {
-    height: 100%;
-}
-
 body {
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 14px;
@@ -65,7 +61,7 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    margin-bottom: 100px;
 }
 
 input {
@@ -220,4 +216,37 @@ input[type="checkbox"]:checked ~ .user-admin {
 
 input[type="checkbox"]:checked ~ .user-pw-form {
     display: block;
+}
+
+.library {
+    margin-top: 40px;
+}
+
+.library .book {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.library .title {
+    flex-grow: 1;
+}
+
+.library .download {
+    flex-grow: 0;
+}
+
+.library .search {
+    padding: 4px 6px;
+    flex-grow: 1;
+}
+
+.library .search-bar a {
+    flex-grow: 0;
+    display: inline-block;
+    padding: 4px 5px;
+}
+
+.library .search-bar {
+    margin-bottom: 20px;
+    display: flex;
 }
