@@ -14,4 +14,5 @@
     (navigation user)
     [ :h1 "Locked" ]
     [ :p "The application is currently locked because a rescan is performed. Please stand by" ]
+    [ :script "(function() { setTimeout(function() { location.href='/'; }, 1500); })()" ]
     [ :a { :href "/" } "Try again" ]))
