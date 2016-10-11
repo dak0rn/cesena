@@ -63,11 +63,21 @@
 
 (defn-
   ^{
+     :doc "Write an error to the database"
+     :added "0.1.0"
+  }
+  write-error
+  [ error ]
+  (query-set-error db { :error (str error) }))
+
+(defn-
+  ^{
      :doc "Performs the actual rescanning work"
      :added "0.1.0"
   }
   perform-rescan
   [ ]
+  (query-reset-error db)
   (query-set-lock db)
   (try
     (with-db-transaction [ trx db ]
@@ -75,6 +85,7 @@
             proc (partial process-file trx) ]
         (query-clear-db trx)
         (process-directory source proc)))
+    (catch java.lang.Exception ex (write-error ex))
     (finally
       (query-unset-lock db))))
 
@@ -88,7 +99,7 @@
   }
   rescan-library
   [ ]
-  (future perform-rescan))
+  (future (perform-rescan)))
 
 ;; Determines if the application is currently doing a rescan
 (defn
@@ -99,3 +110,14 @@
   is-rescanning?
   [ ]
   (-> (query-is-locked db) (:activity_lock) (= 1)))
+
+;; Function that returns the rescanning error
+(defn
+  ^{
+     :doc "Returns the rescanning error or nil"
+     :added "0.1.0"
+  }
+  get-rescanning-error
+  [ ]
+  (:error (query-get-error db)))
+

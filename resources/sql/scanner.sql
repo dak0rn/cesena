@@ -19,3 +19,15 @@ UPDATE cesena SET activity_lock = 0;
 -- :name query-is-locked :? :1
 -- :doc "Retrives the activity lock"
 SELECT activity_lock FROM cesena LIMIT 1;
+
+-- :name query-set-error :!
+-- :doc "Sets the error message"
+UPDATE cesena SET error = :error;
+
+-- :name query-get-error :? :1
+-- :doc "Selects the application error"
+SELECT error FROM cesena;
+
+-- :name query-reset-error :!
+-- :doc "Resets the error"
+UPDATE cesena SET error = NULL;

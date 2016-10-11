@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS cesena_book (
 );
 --;;
 CREATE TABLE cesena (
-    activity_lock INTEGER
+    activity_lock INTEGER,
+    error TEXT DEFAULT NULL
 );
 --;;
 INSERT INTO cesena (activity_lock) VALUES (0);

@@ -4,7 +4,7 @@
             [ cesena.views.admin :refer [ render-admin ] ]
             [ ring.util.response :refer [ redirect ] ]
             [ cesena.services.user :refer [ find-all-users create-user lock-user change-password delete-user ] ]
-            [ cesena.services.scanner :refer [ rescan-library ] ]
+            [ cesena.services.scanner :refer [ rescan-library get-rescanning-error ] ]
             [ cesena.middlewares.local :refer [ require-admin ] ]))
 
 ;; Route handler functions
@@ -17,8 +17,9 @@
   [ request ]
   (let [ user (:cesena-session request)
          query (:query-params request)
+         re (get-rescanning-error)
          all-users (find-all-users) ]
-    (render-admin user all-users query)))
+    (render-admin user all-users query re)))
 
 (defn-
   ^{

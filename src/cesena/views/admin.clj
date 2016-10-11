@@ -105,7 +105,7 @@
      :added "0.1.0"
   }
   render-admin
-  [ session all-users message-options ]
+  [ session all-users message-options rescanning-error ]
   (document "Cesena Admin"
     (navigation session)
     [ :main
@@ -116,4 +116,9 @@
         [ :div.admin-left (user-list all-users) ]
         [ :div.admin-right (user-create-form) (rescan-form) ]
       ]
+      (when rescanning-error
+        [ :div.message.error
+            "An error occured during rescanning"
+            [ :pre rescanning-error ]
+        ])
     ]))
