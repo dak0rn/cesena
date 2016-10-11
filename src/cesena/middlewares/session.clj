@@ -5,11 +5,12 @@
             [ cesena.services.user :refer [ find-user-by-id ] ]
             [ ring.util.response :refer [ redirect ] ]))
 
-(defn wrap-session
+(defn
   ^{
     :doc "Session middleware that loads the user's session"
     :added "0.1.0"
   }
+  wrap-session
   [ handler ]
   (fn [ request ]
     (if (or (= "/login" (:uri request)) (= "/logout" (:uri request)))
