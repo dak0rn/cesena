@@ -26,7 +26,7 @@
         (let [ bid (:book_id book) ]
           [ :div.book
             [ :div.title [ :a { :href (str "/book/" bid) } (:title book) ] ]
-            [ :div.download [ :a { :href (str "/serve/" bid) } "Download" ] ]
+            [ :div.download [ :a { :href (str "/serve/" bid) :target "_blank" } "Download" ] ]
         ]))
     ]
     ))
