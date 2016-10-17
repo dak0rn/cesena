@@ -250,3 +250,57 @@ input[type="checkbox"]:checked ~ .user-pw-form {
     margin-bottom: 20px;
     display: flex;
 }
+
+.book-details {
+    display: table;
+}
+
+.book-details .detail-row {
+    display: table-row;
+}
+
+.book-details .detail-label {
+    display: table-cell;
+    vertical-align: top;
+    font-weight: bold;
+    padding: 7px 8px;
+}
+
+.book-details .detail-value {
+    display: table-cell;
+    vertical-align: top;
+    padding: 7px 8px;
+}
+
+.book-toolbar {
+    text-align: right;
+}
+
+.book-toolbar > * {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.book-grid {
+    display: flex;
+}
+
+.book-left {
+    flex-grow: 0;
+}
+
+.book-right {
+    flex-grow: 1;
+}
+
+.book-right iframe {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 0 0 0 auto;
+    height: 100%;
+    max-height: 600px;
+}
+
+/* Padding / margin utils */
+.mt-40 { margin-top: 40px; }
