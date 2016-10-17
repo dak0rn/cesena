@@ -21,3 +21,11 @@
   find-books
   [ term ]
   (query-with-term db { :term (str "%" term "%") }))
+
+(defn
+  get-book
+  "Returns the book identified by the given id"
+  { :added "0.1.0" }
+  [ book-id ]
+  (let [ param { :bid book-id } ]
+    (query-specific-book db param)))
