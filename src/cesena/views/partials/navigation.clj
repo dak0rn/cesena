@@ -5,6 +5,7 @@
 ;; Navigation items
 (def navigation-items [
   { :url "/" :title "Index" }
+  { :url "/upload" :title "Upload" }
   "-"
   "admin"
   { :url "/logout" :title "Logout" }

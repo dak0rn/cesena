@@ -16,3 +16,8 @@ UPDATE cesena_book
     SET title = :title,
         date = :date
     WHERE book_id = :book_id;
+
+-- :name query-create-book :!
+-- :doc "Creates a new book"
+INSERT INTO cesena_book (book_id, title, path, checksum, date)
+    VALUES (:book_id, :title, :path, :checksum, :date);
