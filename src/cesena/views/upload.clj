@@ -16,7 +16,7 @@
     [ :h1 "Upload a book" ]
     (if locked
       [ :div.message.danger "The upload folder is not writable" ]
-      (form-to [ :post "/upload" ]
+      (form-to { :enctype "multipart/form-data" } [ :post "/upload" ]
         (anti-forgery-field)
         [ :div.book-details
           [ :div.detail-row

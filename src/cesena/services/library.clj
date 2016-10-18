@@ -62,5 +62,5 @@
   (let [ to-insert (-> book
                        (assoc :date (now))
                        (assoc :book_id (UUID/randomUUID))) ]
-    (query-create-book db book)
+    (query-create-book db to-insert)
     to-insert))
