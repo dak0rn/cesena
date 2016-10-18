@@ -10,6 +10,7 @@
             [ cesena.routes.logout ]
             [ cesena.routes.serve ]
             [ cesena.routes.book ]
+            [ cesena.routes.edit ]
             [ cesena.routes.locked ]
             [ cesena.routes.admin ]
             ))
@@ -22,6 +23,7 @@
             cesena.routes.locked/routes
             cesena.routes.serve/routes
             cesena.routes.book/routes
+            cesena.routes.edit/routes
             cesena.routes.admin/routes
             cesena.routes.login/routes)))
 

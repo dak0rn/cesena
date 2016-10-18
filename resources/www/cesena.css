@@ -261,14 +261,12 @@ input[type="checkbox"]:checked ~ .user-pw-form {
 
 .book-details .detail-label {
     display: table-cell;
-    vertical-align: top;
     font-weight: bold;
     padding: 7px 8px;
 }
 
 .book-details .detail-value {
     display: table-cell;
-    vertical-align: top;
     padding: 7px 8px;
 }
 
@@ -300,6 +298,10 @@ input[type="checkbox"]:checked ~ .user-pw-form {
     margin: 0 0 0 auto;
     height: 100%;
     max-height: 600px;
+}
+
+.book-edit input[type="text"] {
+    width: 400px;
 }
 
 /* Padding / margin utils */
