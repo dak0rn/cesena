@@ -7,6 +7,7 @@
             ;; Routes
             [ cesena.routes.index ]
             [ cesena.routes.login ]
+            [ cesena.routes.notfound ]
             [ cesena.routes.logout ]
             [ cesena.routes.serve ]
             [ cesena.routes.book ]
@@ -25,7 +26,8 @@
             cesena.routes.book/routes
             cesena.routes.edit/routes
             cesena.routes.admin/routes
-            cesena.routes.login/routes)))
+            cesena.routes.login/routes
+            cesena.routes.notfound/routes)))
 
 ;; Modified ring defaults
 (def middleware-defaults
