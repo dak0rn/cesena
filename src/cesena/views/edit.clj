@@ -21,14 +21,20 @@
   (document "Edit Book"
     (navigation user)
     [ :h1 "Edit Book" ]
+    (when message
+      [ :div.message.success
+        (case message
+           "save" "The book has been updated"
+          ;; Default
+           "Something.")
+        [ :a { :href (str "/edit/" (:book_id book)) :class "dismiss" } "&times;" ]])
     (form-to [ :post (str "/edit/" (:book_id book) ) ]
       [ :div.book-details.book-edit
         [ :div.detail-row
           [ :div.detail-label "Title" ]
           [ :div.detail-value
             (anti-forgery-field)
-            [ :input { :type "hidden" :name "bid" :value (:book_id book) } ]
-            [ :input { :type "text" :value (h (:title book)) } ]
+            [ :input { :name "title"  :type "text" :value (h (:title book)) } ]
           ]
         ]
         (for [ detail detail-props ]

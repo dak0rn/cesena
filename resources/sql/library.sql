@@ -13,6 +13,6 @@ SELECT * FROM cesena_book WHERE book_id = :bid;
 -- :name query-update-book :!
 -- :doc "Updates a book"
 UPDATE cesena_book
-    SET title = :title
+    SET title = :title,
         date = :date
     WHERE book_id = :book_id;
