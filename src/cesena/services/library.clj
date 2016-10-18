@@ -3,7 +3,8 @@
   (:require [ cesena.database :refer [ db make-queries ] ]
             [ cesena.config :refer [ config ] ]
             [ clojure.java.io :refer [ file ] ]
-            [ clj-time.core :refer [ now ] ]))
+            [ clj-time.core :refer [ now ] ])
+  (:import [ java.util UUID ]))
 
 (make-queries "sql/library.sql")
 
@@ -50,4 +51,15 @@
    the library folder"
   [ ]
   (let [ source (:source config) ]
-    (-> source file .canWrite)))
+    (not (-> source file .canWrite))))
+
+(defn
+  create-book
+  "Creates the given book in the database. The primary key and
+   the date are set automatically"
+  { :added "0.1.0" }
+  [ book ]
+  (let [ to-insert (-> book
+                       (assoc :date (now))
+                       (assoc :book_id (UUID/randomUUID))) ]
+    (query-create-book db book)))
