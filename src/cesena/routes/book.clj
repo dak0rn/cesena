@@ -4,6 +4,7 @@
   (:require [ compojure.core :refer [ GET ] ]
             [ ring.util.response :refer [ redirect ] ]
             [ cesena.views.book :refer [ render-book ] ]
+            [ cesena.routes :refer [ url ] ]
             [ clojure.java.io :refer [ file ] ]
             [ cesena.services.library :refer [ get-book ] ]))
 
@@ -19,7 +20,7 @@
                    (file (:path book))
                    (= "true" (get-in request [ :params :view ]))
                    user)
-      (redirect "/?error=book-not-found"))))
+      (redirect (url "/?error=book-not-found")))))
 
 (def routes [
   (GET "/book/:id" request (handle-book request))

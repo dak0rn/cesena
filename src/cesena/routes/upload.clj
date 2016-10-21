@@ -25,11 +25,11 @@
          title (:name params)
          filedata (:datfile params) ]
     (if (or (blank? title) (not filedata))
-      (redirect "/upload?error=missing")
+      (redirect (url "/upload?error=missing"))
       (let [ tempfile (:tempfile filedata)
              name (:filename filedata)
              new-book (store-book title name tempfile) ]
-        (redirect (str "/book/" (:book_id new-book)))))))
+        (redirect (url (str "/book/" (:book_id new-book))))))))
 
 (def routes [
   (GET "/upload" request (handle-upload request))

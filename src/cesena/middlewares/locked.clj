@@ -1,6 +1,7 @@
 ;; locked.clj - Middleware that determines if the application is locked
 (ns cesena.middlewares.locked
   (:require [ ring.util.response :refer [ redirect ] ]
+            [ cesena.routes :refer [ url ] ]
             [ cesena.services.scanner :refer [ is-rescanning? ] ]))
 
 (defn
@@ -12,6 +13,6 @@
   wrap-locked
   [ handler ]
   (fn [ request ]
-    (if (and (not= "/locked" (:uri request)) (is-rescanning?))
-      (redirect "/locked")
+    (if (and (not= (url "/locked") (:uri request)) (is-rescanning?))
+      (redirect (url "/locked"))
       (handler request))))

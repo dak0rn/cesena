@@ -4,6 +4,8 @@
             [ ring.middleware.defaults :refer [ wrap-defaults site-defaults ] ]
             [ cesena.middlewares.session :refer [ wrap-session ] ]
             [ cesena.middlewares.locked :refer [ wrap-locked ] ]
+            [ hiccup.middleware :refer [ wrap-base-url ] ]
+            [ hiccup.util :refer [ *base-url* ] ]
             ;; Routes
             [ cesena.routes.index ]
             [ cesena.routes.login ]
@@ -14,8 +16,7 @@
             [ cesena.routes.upload ]
             [ cesena.routes.edit ]
             [ cesena.routes.locked ]
-            [ cesena.routes.admin ]
-            ))
+            [ cesena.routes.admin ]))
 
 ;; The router handler composed of all the routes
 (def route-handler
@@ -44,5 +45,15 @@
       wrap-session
       ;; Check the locked state of the application
       wrap-locked
+      ;; wrap-base-url updates the *base-url* in the hiccup.util namespace
+      ;; to the servlet context if present
+      wrap-base-url
       ;; Apply recommended middlewares for websites
       (wrap-defaults middleware-defaults)))
+
+(defn
+  url
+  "Combines the given relative URL with the servlet context base URL"
+  { :added "0.1.0" }
+  [ url ]
+  (str *base-url* url))

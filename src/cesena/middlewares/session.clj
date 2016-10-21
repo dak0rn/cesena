@@ -2,6 +2,7 @@
 (ns cesena.middlewares.session
   (:require [ cesena.config :refer [ config ] ]
             [ cesena.services.security :refer [ create-jwt get-claims add-jwt-cookie remove-jwt-cookie ] ]
+            [ cesena.routes :refer [ url ] ]
             [ cesena.services.user :refer [ find-user-by-id ] ]
             [ ring.util.response :refer [ redirect ] ]))
 
@@ -13,7 +14,7 @@
   wrap-session
   [ handler ]
   (fn [ request ]
-    (if (or (= "/login" (:uri request)) (= "/logout" (:uri request)))
+    (if (or (= (url "/login") (:uri request)) (= (url "/logout") (:uri request)))
       ;; The login is skipped from the session handling
       (handler request)
       ;; Try to get the JWT from the request otherwise
@@ -25,10 +26,10 @@
                  uid (:jti claim) ]
             (if-let [ user (find-user-by-id uid) ]
               (add-jwt-cookie (handler (assoc request :cesena-session user)) (create-jwt claim))
-              (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" "/login" } })))
+              (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" (url "/login") } })))
           (catch clojure.lang.ExceptionInfo ignore
             (println "Exception" ignore)
-            (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" "/login" } })))
+            (remove-jwt-cookie { :status 302 :cookies {} :body "" :headers { "Location" (url "/login") } })))
         ;; If no JWT is present, redirect to the login
-        (redirect "/login")
+        (redirect (url "/login"))
         ))))

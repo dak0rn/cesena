@@ -1,6 +1,7 @@
 ;; admin.clj - Admin routes
 (ns cesena.routes.admin
   (:require [ compojure.core :refer [ GET POST ] ]
+            [ cesena.routes :refer [ url ] ]
             [ cesena.views.admin :refer [ render-admin ] ]
             [ ring.util.response :refer [ redirect ] ]
             [ cesena.services.user :refer [ find-all-users create-user lock-user change-password delete-user ] ]
@@ -33,10 +34,10 @@
          passwd (get user-def "passwd")
          is-admin (= "on" (get user-def "admin")) ]
     (if (or (empty? name) (empty? passwd))
-      (redirect "/admin?error=values-missing")
+      (redirect (url "/admin?error=values-missing"))
       (do
         (create-user name passwd { :admin is-admin })
-        (redirect "/admin?success=created")))))
+        (redirect (url "/admin?success=created"))))))
 
 (defn-
   ^{
@@ -48,8 +49,8 @@
   (if-let [ who (get-in request [ :form-params "uid" ]) ]
     (do
       (lock-user { :user_id who }) ;; Emulating a user here
-      (redirect "/admin?success=locked"))
-    (redirect "/admin?error=lock-missing")))
+      (redirect (url "/admin?success=locked")))
+    (redirect (url "/admin?error=lock-missing"))))
 
 
 (defn-
@@ -63,10 +64,10 @@
          who (get form-params "uid")
          password (get form-params "password") ]
     (if (or (empty? who) (empty? password))
-       (redirect "/admin?error=change-missing")
+       (redirect (url "/admin?error=change-missing"))
        (do
          (change-password { :user_id who } password)
-         (redirect "/admin?success=change")))))
+         (redirect (url "/admin?success=change"))))))
 
 (defn-
   ^{
@@ -77,7 +78,7 @@
   [ request ]
   (let [ who (get-in request [ :form-params "uid" ]) ]
     (delete-user { :user_id who })
-    (redirect "/admin?success=delete")))
+    (redirect (url "/admin?success=delete"))))
 
 (defn-
   ^{
@@ -87,7 +88,7 @@
   handle-rescan
   [ request ]
   (rescan-library)
-  (redirect "/admin?success=rescan"))
+  (redirect (url "/admin?success=rescan")))
 
 ;; Exported routes
 

@@ -2,6 +2,7 @@
 (ns cesena.routes.edit
   (:require [ compojure.core :refer [ GET POST ] ]
             [ cesena.views.edit :refer [ render-edit ] ]
+            [ cesena.routes :refer [ url ] ]
             [ ring.util.response :refer [ redirect ] ]
             [ cesena.services.library :refer [ get-book update-book ] ]))
 
@@ -15,7 +16,7 @@
          message (get-in request [ :params :success ])
          book (get-book book-id) ]
     (if-not book
-      (redirect "/?error=book-not-found")
+      (redirect (url "/?error=book-not-found"))
       (render-edit book user message))))
 
 (defn
@@ -26,8 +27,8 @@
   (if-let [ book (-> request :route-params :id get-book) ]
     (let [ new-book (assoc book :title (-> request :params :title)) ]
       (update-book new-book)
-      (redirect (str "/edit/" (:book_id new-book) "?success=save" )))
-    (redirect "/?error=book-not-found")))
+      (redirect (url (str "/edit/" (:book_id new-book) "?success=save" ))))
+    (redirect (url "/?error=book-not-found"))))
 
 (def routes [
   (GET "/edit/:id" request (handle-edit request))

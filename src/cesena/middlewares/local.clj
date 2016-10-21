@@ -1,6 +1,7 @@
 ;; local.clj - local middleware functions
 (ns cesena.middlewares.local
-  (:require [ ring.util.response :refer [ redirect ] ]))
+  (:require [ ring.util.response :refer [ redirect ] ]
+            [ cesena.routes :refer [ url ] ]))
 
 ;; Middleware that ensures that the requesting user
 ;; is an admin
@@ -15,4 +16,4 @@
     (let [ user (:cesena-session request) ]
       (if (= 1 (:admin user))
         (f request)
-        (redirect "/403")))))
+        (redirect (url "/403"))))))

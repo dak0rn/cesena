@@ -1,6 +1,7 @@
 ;; logout.clj - Logout route that removes the user's session
 (ns cesena.routes.logout
   (:require [ compojure.core :refer [ GET ] ]
+            [ cesena.routes :refer [ url ] ]
             [ cesena.services.security :refer [ remove-jwt-cookie ] ]))
 
 ;;; Route handlers
@@ -11,7 +12,7 @@
   }
   logout-handler
   [ ]
-  (remove-jwt-cookie { :status 302 :headers { "Location" "/login" } :cookies {} }))
+  (remove-jwt-cookie { :status 302 :headers { "Location" (url "/login") } :cookies {} }))
 
 ;;; Routes
 (def routes [

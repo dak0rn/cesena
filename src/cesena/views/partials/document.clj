@@ -1,6 +1,7 @@
 ;; document.clj - partial views for the document
 (ns cesena.views.partials.document
-  (:require [ hiccup.core :refer [ h html ] ]))
+  (:require [ hiccup.core :refer [ h html ] ]
+            [ hiccup.page :refer [ include-css ] ]))
 
 (defn
   ^{
@@ -14,7 +15,7 @@
       [ :head
         [ :title (h title) ]
         [ :meta { :name "viewport" :content "width=device-width, initial-scale=1.0" } ]
-        [ :link { :rel "stylesheet" :href "/cesena.css" } ]
+        (include-css "/cesena.css")
       ]
       [ :body children ]
     ]))

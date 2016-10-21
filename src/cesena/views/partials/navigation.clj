@@ -1,6 +1,7 @@
 ;; navigation.clj - The navigation bar
 (ns cesena.views.partials.navigation
-  (:require [ hiccup.core :refer [ html ] ]))
+  (:require [ hiccup.core :refer [ html ] ]
+            [ hiccup.element :refer [ link-to ] ]))
 
 ;; Navigation items
 (def navigation-items [
@@ -29,7 +30,9 @@
             ;; Render a navigation separator?
             (if (= "-" link)
               [ :li.separator ]
-              (if (and (= "admin" link) (= 1 (:admin user)))
-                [ :li.item [ :a { :href "/admin" } "Configuration" ] ]
-                [ :li.item [ :a { :href (:url link) } (:title link) ] ])))
+              [ :li.item
+                (if (and (= "admin" link) (= 1 (:admin user)))
+                 (link-to "/admin" "Configuration")
+                 (link-to (:url link) (:title link)))
+               ]))
          ]])))

@@ -2,6 +2,7 @@
 (ns cesena.routes.serve
   (:require [ compojure.core :refer [ GET ] ]
             [ cesena.services.library :refer [ get-book ] ]
+            [ cesena.routes :refer [ url ] ]
             [ clojure.java.io :refer [ file ] ]
             [ ring.util.response :refer [ header redirect file-response ] ]))
 
@@ -15,7 +16,7 @@
         (header "Content-Type" "application/pdf")
         (header "Content-Disposition" (str "inline; filename='" (-> (:path book) file .getName) "'"))
         )
-    (redirect "/?error=book-not-found")))
+    (redirect (url "/?error=book-not-found"))))
 
 (def routes [
   (GET "/serve/:id" [ id ] (handle-serve id))
